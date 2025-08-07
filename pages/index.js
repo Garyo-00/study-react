@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { Footer } from "../components/Footer";
 import { Links } from "../components/Links";
+import Headline from "../components/Headline";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,12 +37,7 @@ export default function Home() {
             height={38}
             priority
           />
-          <ol>
-            <li>
-              Index Page <code>pages/index.js</code>.
-            </li>
-            <li>Go</li>
-          </ol>
+          <Headline title="Index Page" page="index" />
           <Links />
         </main>
         <Footer />
