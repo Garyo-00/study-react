@@ -1,16 +1,15 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 import { Footer } from "../components/Footer";
-import { Links } from "../components/Links";
-import Headline from "../components/Headline";
+import { Main } from "../components/Main";
+import styles from "@/styles/Home.module.css";
+import { Geist, Geist_Mono } from "next/font/google";
+import { GeistSans } from "next/font/google";
+import { GeistMono } from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -28,18 +27,7 @@ export default function Home() {
       <div
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
-        <main className={styles.main}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js logo"
-            width={180}
-            height={38}
-            priority
-          />
-          <Headline title="About Page" page="about" />
-          <Links />
-        </main>
+        <Main page="about" />
         <Footer />
       </div>
     </>
