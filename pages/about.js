@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { Footer } from "../components/Footer";
-import { Main } from "../components/Main";
+import { Footer } from "@/components/Footer";
+import { Main } from "@/components/Main";
 import styles from "@/styles/Home.module.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GeistSans } from "next/font/google";
