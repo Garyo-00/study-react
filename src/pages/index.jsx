@@ -4,7 +4,7 @@ import { Main } from "../components/Main";
 import styles from "../styles/Home.module.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "../components/Header";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +16,20 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
-  const handleClick = useCallback((e) => {
-    console.log(e.target.href);
-    e.preventDefault();
+  useEffect(() => {
+    console.log("マウント時");
+    document.body.style.backgroundColor = "lightblue";
+
+    return () => {
+      console.log("アンマウント時");
+      document.body.style.backgroundColor = "";
+    };
   }, []);
+
+  //   const handleClick = useCallback((e) => {
+  //     console.log(e.target.href);
+  //     e.preventDefault();
+  //   }, []);
 
   return (
     <>
@@ -33,9 +43,10 @@ export default function Home() {
       <div
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
-        <a href="/about" onClick={handleClick}>
+        {/* <a href="/about" onClick={handleClick}>
           ボタン
-        </a>
+        </a> */}
+
         <Main page="index" />
       </div>
       <Footer />
