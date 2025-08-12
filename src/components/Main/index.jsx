@@ -5,16 +5,6 @@ import { Headline } from "../Headline";
 import { useCallback, useEffect } from "react";
 
 export function Main(props) {
-  useEffect(() => {
-    console.log("マウント時");
-    document.body.style.backgroundColor = "#eaeaea";
-
-    return () => {
-      console.log("アンマウント時");
-      document.body.style.backgroundColor = "";
-    };
-  }, []);
-
   return (
     <main className={styles.main}>
       <Image
