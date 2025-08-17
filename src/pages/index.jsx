@@ -18,9 +18,12 @@ const geistMono = Geist_Mono({
 export default function Home() {
   const [foo, setFoo] = useState(1);
 
-  const handleClick = (e) => {
-    setFoo((foo) => foo + 1);
-  };
+  const handleClick = useCallback(
+    (e) => {
+      if (foo < 10) setFoo((foo) => foo + 1);
+    },
+    [foo]
+  );
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
