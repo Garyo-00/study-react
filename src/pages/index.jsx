@@ -16,14 +16,30 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
-  const [foo, setFoo] = useState(1);
+  const [count, setCount] = useState(1);
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
 
   const handleClick = useCallback(
     (e) => {
-      if (foo < 10) setFoo((foo) => foo + 1);
+      if (count < 10) setCount((count) => count + 1);
     },
-    [foo]
+    [count]
   );
+
+  const handleChange = useCallback((e) => {
+    //if文で文字数制御を行う
+    if (e.target.value.length >= 5) {
+      alert("5文字以内にしてください");
+      return;
+    }
+    //trim()で空白の入力制限をかける
+    setText(e.target.value.trim());
+  }, []);
+
+  const handleDisplay = useCallback(() => {
+    setIsShow((isShow) => !isShow);
+  });
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
@@ -45,8 +61,11 @@ export default function Home() {
       <div
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
-        <h1>{foo}</h1>
+        {/* 三項演算子=JSX記法 */}
+        {isShow ? <h1>{count}</h1> : null}
         <button onClick={handleClick}>ボタン</button>
+        <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
+        <input type="text" value={text} onChange={handleChange}></input>
 
         <Main page="index" />
       </div>
