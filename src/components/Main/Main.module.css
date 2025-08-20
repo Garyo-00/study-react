@@ -14,6 +14,7 @@
   letter-spacing: -0.01em;
   list-style-position: inside;
   text-transform: capitalize;
+  text-align: center;
 }
 
 .main li:not(:last-of-type) {
@@ -32,9 +33,5 @@
   .main {
     align-items: center;
     text-transform: capitalize;
-  }
-
-  .main ol {
-    text-align: center;
   }
 }
