@@ -4,6 +4,9 @@ import { Main } from "@/components/Main";
 import styles from "@/styles/Home.module.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/Header/index";
+import { useCounter } from "../hooks/useCounter";
+import { useInputArray } from "../hooks/useInputArray.jsx";
+import { useBgColor } from "../hooks/useBgColor.jsx";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +17,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function Home() {
+export default function About() {
+  const { count, isShow, handleClick, handleDisplay } = useCounter();
+  const { text, array, handleChange, handleAdd } = useInputArray();
+  useBgColor();
+
   return (
     <>
       <Head>
@@ -28,6 +35,17 @@ export default function Home() {
       <div
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
+        {/* 三項演算子=JSX記法 */}
+        {isShow ? <h1>{count}</h1> : null}
+        <button onClick={handleClick}>ボタン</button>
+        <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
+        <input type="text" value={text} onChange={handleChange}></input>
+        <button onClick={handleAdd}>追加</button>
+        <ul>
+          {array.map((item) => {
+            return <li key={item}>{item}</li>;
+          })}
+        </ul>
         <Main page="about" />
         <Footer />
       </div>

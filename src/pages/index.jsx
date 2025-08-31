@@ -4,7 +4,9 @@ import { Main } from "../components/Main";
 import styles from "../styles/Home.module.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "../components/Header";
-import { useCallback, useEffect, useState } from "react";
+import { useCounter } from "../hooks/useCounter";
+import { useInputArray } from "../hooks/useInputArray.jsx";
+import { useBgColor } from "../hooks/useBgColor.jsx";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,49 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
-  const [count, setCount] = useState(1);
-  const [text, setText] = useState("");
-  const [isShow, setIsShow] = useState(true);
-  const [array, setArray] = useState([]);
-
-  const handleClick = useCallback(
-    (e) => {
-      if (count < 10) setCount((prevCount) => prevCount + 1);
-    },
-    [count]
-  );
-
-  const handleChange = useCallback((e) => {
-    //if文で文字数制御を行う
-    if (e.target.value.length >= 5) {
-      alert("5文字以内にしてください");
-      return;
-    }
-    //trim()で空白の入力制限をかける
-    setText(e.target.value.trim());
-  }, []);
-
-  const handleDisplay = useCallback(() => {
-    setIsShow((prevIsShow) => !prevIsShow);
-  });
-
-  const handleAdd = useCallback(() => {
-    setArray((prevArray) => {
-      if (prevArray.some((item) => item === text)) {
-        alert("同じ文字は追加できません");
-        return prevArray;
-      }
-      return [...prevArray, text];
-    });
-  }, [text]);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = "lightblue";
-
-    return () => {
-      document.body.style.backgroundColor = "";
-    };
-  }, []);
+  const { count, isShow, handleClick, handleDisplay } = useCounter();
+  const { text, array, handleChange, handleAdd } = useInputArray();
+  useBgColor();
 
   return (
     <>
