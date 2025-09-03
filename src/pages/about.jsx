@@ -4,9 +4,6 @@ import { Main } from "@/components/Main";
 import styles from "@/styles/Home.module.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/Header/index";
-import { useCounter } from "../hooks/useCounter";
-import { useInputArray } from "../hooks/useInputArray.jsx";
-import { useBgColor } from "../hooks/useBgColor.jsx";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,11 +14,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function About() {
-  const { count, isShow, handleClick, handleDisplay } = useCounter();
-  const { text, array, handleChange, handleAdd } = useInputArray();
-  useBgColor();
-
+export default function About({
+  count,
+  isShow,
+  handleClick,
+  handleDisplay,
+  text,
+  array,
+  handleChange,
+  handleAdd,
+}) {
   return (
     <>
       <Head>
