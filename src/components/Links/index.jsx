@@ -2,10 +2,10 @@ import Image from "next/image";
 import styles from "./Links.module.css";
 import { useCallback, useState } from "react";
 
-export function Links({ items, handleReduce }) {
+export const Links = (props) => {
   return (
     <div className={styles.ctas}>
-      {items.map((item) => {
+      {props.items.map((item) => {
         return (
           <a key={item.href} href={item.href} className={styles.primary}>
             <Image
@@ -21,4 +21,4 @@ export function Links({ items, handleReduce }) {
       })}
     </div>
   );
-}
+};

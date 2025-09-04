@@ -3,10 +3,12 @@ import { useCounter } from "../hooks/useCounter.jsx";
 import { useInputArray } from "../hooks/useInputArray.jsx";
 import { useBgColor } from "../hooks/useBgColor.jsx";
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
   const counter = useCounter();
   const inputArray = useInputArray();
   useBgColor();
 
   return <Component {...pageProps} {...counter} {...inputArray} />;
-}
+};
+
+export default App;

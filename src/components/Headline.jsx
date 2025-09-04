@@ -1,4 +1,4 @@
-export function Headline(props) {
+export const Headline = (props) => {
   return (
     <div>
       <ol>
@@ -8,4 +8,4 @@ export function Headline(props) {
       </ol>
     </div>
   );
-}
+};
