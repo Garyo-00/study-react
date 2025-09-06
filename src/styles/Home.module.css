@@ -16,11 +16,6 @@
   font-family: var(--font-geist-sans);
 }
 
-.page ol {
-  padding-left: 1.5rem;
-  list-style: decimal inside;
-}
-
 @media (prefers-color-scheme: dark) {
   .page {
     --gray-rgb: 255, 255, 255;
