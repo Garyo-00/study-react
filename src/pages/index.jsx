@@ -2,19 +2,22 @@ import Head from "next/head";
 import { Footer } from "../components/Footer";
 import { Main } from "../components/Main";
 import styles from "../styles/Home.module.css";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "../components/Header";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { useState, useCallback, useEffect } from "react";
 
 const Home = (props) => {
+  const [posts, setPosts] = useState([]);
+
+  const getPosts = useCallback(async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const json = await res.json();
+    setPosts(json);
+  }, []);
+
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
+
   return (
     <>
       <Head>
@@ -24,29 +27,12 @@ const Home = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div
-        className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
-      >
-        {/* 三項演算子=JSX記法 */}
-        {props.isShow ? <h1>{props.count}</h1> : null}
-        <button onClick={props.handleClick}>ボタン</button>
-        <button onClick={props.handleDisplay}>
-          {props.isShow ? "非表示" : "表示"}
-        </button>
-        <input
-          type="text"
-          value={props.text}
-          onChange={props.handleChange}
-        ></input>
-        <button onClick={props.handleAdd}>追加</button>
-        <ul>
-          {props.array.map((item) => {
-            return <li key={item}>{item}</li>;
-          })}
-        </ul>
+      <ol>
+        {posts.map((post) => {
+          return <li key={post.id}>{post.title}</li>;
+        })}
+      </ol>
 
-        <Main page="index" />
-      </div>
       <Footer />
     </>
   );
