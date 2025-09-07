@@ -1,9 +1,32 @@
-import { useState, useCallback, useEffect } from "react";
+import { useCallback, useEffect, useReducer } from "react";
+
+const initialState = {
+  data: [],
+  loading: true,
+  error: null,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "end":
+      return {
+        ...state,
+        data: action.data,
+        loading: false,
+      };
+    case "error":
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+    default:
+      throw new Error("no such action type!");
+  }
+};
 
 export const Posts = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const getPosts = useCallback(async () => {
     try {
@@ -14,33 +37,32 @@ export const Posts = () => {
         );
       }
       const json = await res.json();
-      setPosts(json);
+      dispatch({ type: "end", data: json });
     } catch (error) {
-      setError(error);
+      dispatch({ type: "error", error });
     }
-    setLoading(false);
   }, []);
 
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
-  if (loading) {
+  if (state.loading) {
     return <ol>Loading...</ol>;
   }
 
-  if (error) {
-    return <ol>{error.message}</ol>;
+  if (state.error) {
+    return <ol>{state.error.message}</ol>;
   }
 
-  if (posts.length === 0) {
+  if (state.data.length === 0) {
     return <ol>No posts found.</ol>;
   }
 
   return (
     <>
       <ol>
-        {posts.map((post) => {
+        {state.data.map((post) => {
           return <li key={post.id}>{post.title}</li>;
         })}
       </ol>
