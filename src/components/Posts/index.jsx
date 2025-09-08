@@ -1,68 +1,24 @@
-import { useCallback, useEffect, useReducer } from "react";
-
-const initialState = {
-  data: [],
-  loading: true,
-  error: null,
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "end":
-      return {
-        ...state,
-        data: action.data,
-        loading: false,
-      };
-    case "error":
-      return {
-        ...state,
-        loading: false,
-        error: action.error,
-      };
-    default:
-      throw new Error("no such action type!");
-  }
-};
+import { usePosts } from "../../hooks/usePosts";
 
 export const Posts = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { data, error, isLoading, isEmpty } = usePosts();
 
-  const getPosts = useCallback(async () => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      if (!res.ok) {
-        throw new Error(
-          `エラーが発生したため、データの取得に失敗しました。(${res.status})`
-        );
-      }
-      const json = await res.json();
-      dispatch({ type: "end", data: json });
-    } catch (error) {
-      dispatch({ type: "error", error });
-    }
-  }, []);
-
-  useEffect(() => {
-    getPosts();
-  }, [getPosts]);
-
-  if (state.loading) {
+  if (isLoading) {
     return <ol>Loading...</ol>;
   }
 
-  if (state.error) {
-    return <ol>{state.error.message}</ol>;
+  if (error) {
+    return <ol>{error.message}</ol>;
   }
 
-  if (state.data.length === 0) {
-    return <ol>No posts found.</ol>;
+  if (isEmpty) {
+    return <ol>データは空です</ol>;
   }
 
   return (
     <>
       <ol>
-        {state.data.map((post) => {
+        {data.map((post) => {
           return <li key={post.id}>{post.title}</li>;
         })}
       </ol>
