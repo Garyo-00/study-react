@@ -13,7 +13,7 @@ export const Post = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1 className={styles.h1}>{post?.title}</h1>
       <p className={styles.p}>{post?.body}</p>
       {user?.name ? <div>Created by {user?.name}</div> : null}
