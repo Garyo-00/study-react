@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { Footer } from "../components/Footer";
-import { Posts } from "../components/Posts";
-import { Header } from "../components/Header";
+import { Footer } from "../../components/Footer";
+import { Posts } from "../../components/Posts";
+import { Header } from "../../components/Header";
 import { useState, useCallback, useEffect } from "react";
 
 const Home = (props) => {
