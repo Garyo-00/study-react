@@ -1,4 +1,5 @@
 import { usePost } from "../../hooks/usePost";
+import styles from "./Post.module.css";
 
 export const Post = () => {
   const { post, error, isLoading, user } = usePost();
@@ -13,8 +14,8 @@ export const Post = () => {
 
   return (
     <div>
-      <h1>{post?.title}</h1>
-      <p>{post?.body}</p>
+      <h1 className={styles.h1}>{post?.title}</h1>
+      <p className={styles.p}>{post?.body}</p>
       {user?.name ? <div>Created by {user?.name}</div> : null}
     </div>
   );
