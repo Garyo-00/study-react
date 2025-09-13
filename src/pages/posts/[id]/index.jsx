@@ -4,7 +4,7 @@ import { Header } from "../../../components/Header";
 import { usePost } from "../../../hooks/usePost";
 import { Post } from "@/components/Post";
 
-const PostId = () => {
+const PostsId = () => {
   const { post, user, error, isLoading } = usePost();
 
   console.log({ post, user, error, isLoading });
@@ -23,4 +23,4 @@ const PostId = () => {
     </>
   );
 };
-export default PostId;
+export default PostsId;
