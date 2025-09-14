@@ -1,5 +1,5 @@
 import { usePost } from "../../hooks/usePost";
-import styles from "./Post.module.css";
+import styles from "../../styles/Children.module.css";
 
 export const Post = () => {
   const { post, error, isLoading, user } = usePost();

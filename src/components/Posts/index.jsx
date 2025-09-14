@@ -1,4 +1,5 @@
 import { usePosts } from "../../hooks/usePosts";
+import styles from "../../styles/Home.module.css";
 import Link from "next/link";
 
 export const Posts = () => {
@@ -17,8 +18,8 @@ export const Posts = () => {
   }
 
   return (
-    <>
-      <ol>
+    <div className={styles.container}>
+      <ol className={styles.ol}>
         {data.map((post) => {
           return (
             <li key={post.id}>
@@ -27,6 +28,6 @@ export const Posts = () => {
           );
         })}
       </ol>
-    </>
+    </div>
   );
 };
