@@ -19,6 +19,7 @@ export const Users = () => {
 
   return (
     <div className={styles.container}>
+      <h1 className={styles.h1}>Users</h1>
       <ol className={styles.ol}>
         {data.map((user) => {
           return (
