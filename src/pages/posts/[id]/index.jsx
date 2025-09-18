@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Footer } from "../../../components/Footer";
 import { Header } from "../../../components/Header";
 import { usePost } from "../../../hooks/usePost";
-import { Post } from "@/components/Post";
+import { Post } from "../../../components/Post";
 
 const PostsId = () => {
   const { post, user, error, isLoading } = usePost();

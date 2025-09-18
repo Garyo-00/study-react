@@ -1,9 +1,9 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { Comment } from "@/components/comment";
+import { Footer } from "../../../components/Footer";
+import { Header } from "../../../components/Header";
+import { Comment } from "../../../components/Comment";
 import Head from "next/head";
 import styles from "../../../styles/Children.module.css";
-import { useComment } from "@/hooks/useComment";
+import { useComment } from "../../../hooks/useComment";
 
 const CommentId = () => {
   const comment = useComment();

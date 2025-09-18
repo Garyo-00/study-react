@@ -1,7 +1,6 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { Footer } from "../../components/Footer";
+import { Header } from "../../components/Header";
 import Head from "next/head";
-import styles from "../../styles/Home.module.css";
 import { Comments as CommentsComponet } from "../../components/comments";
 
 const Commments = () => {
