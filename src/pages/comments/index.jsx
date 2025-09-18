@@ -1,7 +1,7 @@
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import Head from "next/head";
-import { Comments as CommentsComponet } from "../../components/comments";
+import { Comments as CommentsComponet } from "../../components/Comments";
 
 const Commments = () => {
   return (
